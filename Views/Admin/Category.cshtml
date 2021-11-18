@@ -1,0 +1,72 @@
+﻿
+@{
+    ViewBag.Title = "Category";
+    Layout = "~/Views/Shared/AdminMaster.cshtml";
+}
+@using eshopadmin.Models;
+@model List<Category>
+<button type="button" id="AddCategory" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal" style="margin-bottom: 20px">
+    Əlavə et
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="myModalLabel">Kateqoriya formu</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            @* content *@
+            <div class="modal-body" style="padding: 20px; background: #ae6af5">
+
+                <form action="~/Admin/Category" method="post" enctype="multipart/form-data" >
+                    <input type="hidden" name="CategoryID" id="categoryid" />
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="categoryname" placeholder="Kateqoriyanın adı" name="CategoryName" />
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Bağla</button>
+                        <button type="submit" class="btn btn-primary">Yadda Saxla</button>
+                    </div>
+                </form>
+
+            </div>
+            @* content *@
+
+
+        </div>
+    </div>
+</div>
+<div>
+    <table class="table" style="background: white;" id="table">
+        <thead style="font-weight: bold;">
+            <tr>
+                <th style="text-align: center; display: none" scope="col">SQLID#</th>
+                <th style="text-align: center;" scope="col">ID#</th>
+                <th style="text-align: center;" scope="col">Məhsulun adı</th>
+                <th style="text-align: center;" scope="col">Düzəlt / Sil</th>
+            </tr>
+        </thead>
+        <tbody style="text-align: center;">
+
+            @foreach(var item in Model)
+            {
+            <tr>
+                <td style="display: none">@item.CategoryID</td>
+                <td>@(Model.IndexOf(item)+1)</td>
+                <td>@item.CategoryName</td>
+                <td>
+                    <div style="display: flex; justify-content: space-around;">
+                        <div data-bs-toggle="modal" data-bs-target="#myModal" style="cursor: pointer; color: rebeccapurple"><i class="fas fa-edit"></i></div>
+                        <a href="~/Admin/DeleteCategoryRow/@item.CategoryID"> <div><i class="fas fa-trash"></i></div></a>
+                    </div>
+                </td>
+            </tr>
+            }
+            
+
+
+        </tbody>
+    </table>
+</div>

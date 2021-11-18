@@ -1,0 +1,104 @@
+﻿
+@{
+    ViewBag.Title = "Product";
+    Layout = "~/Views/Shared/AdminMaster.cshtml";
+}
+@using eshopadmin.Models;
+@model List<ProductView>
+<button type="button" id="AddProduct" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal" style="margin-bottom: 20px">
+    Əlavə et
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="myModalLabel">Məhsul formu</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            @* content *@
+            <div class="modal-body" style="padding: 20px; background: #ae6af5">
+
+                <form action="~/Admin/Product" method="post" enctype="multipart/form-data">
+                    <input type="hidden" name="ProductID" id="productid" />
+                    @*<div class="custom-file">
+                        <input type="file" class="custom-file-input" id="customFile" name="ProductImage" required multiple>
+                        <label class="custom-file-label" for="customFile">Məhsulun şəkli</label>
+                    </div>*@
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="productname" placeholder="Məhsulun adı" name="ProductName" />
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="productprice" placeholder="Məhsulun qiyməti" name="ProductPrice" />
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="productdiscount" placeholder="Məhsulun endirimi" name="ProductDiscount" />
+                    </div>
+                    <div class="form-group">
+                        <textarea class="form-control" id="productinfo" placeholder="Məhsul haqqında" name="ProductInfo" rows="3"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <select class="form-control" name="ProductCategoryID" id="productcategory" style="background-color: #fff;">
+                            <option selected disabled>Kateqoriya seçin:</option>
+                            @foreach (var item in ViewBag.Category)
+                            {
+                                <option value="@item.CategoryID">@item.CategoryName</option>
+                            }
+                        </select>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Bağla</button>
+                        <button type="submit" class="btn btn-primary">Yadda Saxla</button>
+                    </div>
+                </form>
+
+            </div>
+            @* content *@
+
+
+        </div>
+    </div>
+</div>
+<table class="table" style="background: white;" id="table">
+    <thead style="font-weight: bold;">
+        <tr
+            <th forinput="ProductID" style="text-align: center; display: none" scope="col"></th>
+            <th forinput="ProductCategoryID" style="text-align: center; display: none" scope="col">Məhsulun kateqoriyası</th
+            <th forinput="#" style="text-align: center;" scope="col"></th>
+            <th forinput="ProductName" style="text-align: center;" scope="col">Məhsulun adı</th>
+            <th forinput="ProductPrice" style="text-align: center;" scope="col">Məhsulun qiyməti</th>
+            <th forinput="ProductDiscount" style="text-align: center;" scope="col">Məhsulun endirimi</th>
+            <th forinput="ProductInfo" style="text-align: center;" scope="col">Məhsulun haqqında</th>
+            @*<th style="text-align: center;" scope="col">Məhsulun şəkli</th>*@
+            <th forinput="#" style="text-align: center;" scope="col">Məhsulun kateqoriyası</th>
+            <th style="text-align: center;" scope="col">Düzəlt / Sil</th>
+        </tr>
+    </thead>
+    <tbody style="text-align: center;">
+
+        @foreach(var item in Model)
+            {
+        <tr>
+            <td style="display: none">@item.ProductID</td>
+            <td style="display: none">@item.CategoryID</td>
+            <td>@(Model.IndexOf(item)+1)</td>
+            <td>@item.ProductName</td>
+            <td>@item.ProductPrice</td>
+            <td>@item.ProductDiscount</td>
+            <td>@item.ProductInfo</td>
+            <td>@item.CategoryName</td>
+            <td>
+                <div style="display: flex; justify-content: space-around;">
+                    <div data-bs-toggle="modal" data-bs-target="#myModal" style="cursor: pointer; color: rebeccapurple"><i class="fas fa-edit"></i></div>
+                    <a href="~/Admin/DeleteProductRow/@item.ProductID"> <div><i class="fas fa-trash"></i></div></a>
+                </div>
+            </td>
+        </tr>
+
+            }
+
+
+    </tbody>
+</table>
+
