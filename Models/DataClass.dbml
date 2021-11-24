@@ -27,4 +27,15 @@
       <Column Name="CategoryName" Type="System.String" DbType="NVarChar(64)" CanBeNull="true" />
     </Type>
   </Table>
+  <Table Name="dbo.About" Member="Abouts">
+    <Type Name="About">
+      <Column Name="AboutID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="AboutPhoneNumber" Type="System.String" DbType="NVarChar(64)" CanBeNull="true" />
+      <Column Name="AboutFacebook" Type="System.String" DbType="NVarChar(64)" CanBeNull="true" />
+      <Column Name="AboutInstagram" Type="System.String" DbType="NVarChar(64)" CanBeNull="true" />
+      <Column Name="AboutWhatsapp" Type="System.String" DbType="NVarChar(64)" CanBeNull="true" />
+      <Column Name="AboutEmail" Type="System.String" DbType="NVarChar(64)" CanBeNull="true" />
+      <Column Name="AboutInfo" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+    </Type>
+  </Table>
 </Database>

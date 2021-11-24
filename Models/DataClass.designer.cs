@@ -36,6 +36,9 @@ namespace eshopadmin.Models
     partial void InsertProduct(Product instance);
     partial void UpdateProduct(Product instance);
     partial void DeleteProduct(Product instance);
+    partial void InsertAbout(About instance);
+    partial void UpdateAbout(About instance);
+    partial void DeleteAbout(About instance);
     #endregion
 		
 		public DataClassDataContext() : 
@@ -89,6 +92,14 @@ namespace eshopadmin.Models
 			get
 			{
 				return this.GetTable<ProductView>();
+			}
+		}
+		
+		public System.Data.Linq.Table<About> Abouts
+		{
+			get
+			{
+				return this.GetTable<About>();
 			}
 		}
 	}
@@ -492,6 +503,212 @@ namespace eshopadmin.Models
 				{
 					this._CategoryName = value;
 				}
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.About")]
+	public partial class About : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _AboutID;
+		
+		private string _AboutPhoneNumber;
+		
+		private string _AboutFacebook;
+		
+		private string _AboutInstagram;
+		
+		private string _AboutWhatsapp;
+		
+		private string _AboutEmail;
+		
+		private string _AboutInfo;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnAboutIDChanging(int value);
+    partial void OnAboutIDChanged();
+    partial void OnAboutPhoneNumberChanging(string value);
+    partial void OnAboutPhoneNumberChanged();
+    partial void OnAboutFacebookChanging(string value);
+    partial void OnAboutFacebookChanged();
+    partial void OnAboutInstagramChanging(string value);
+    partial void OnAboutInstagramChanged();
+    partial void OnAboutWhatsappChanging(string value);
+    partial void OnAboutWhatsappChanged();
+    partial void OnAboutEmailChanging(string value);
+    partial void OnAboutEmailChanged();
+    partial void OnAboutInfoChanging(string value);
+    partial void OnAboutInfoChanged();
+    #endregion
+		
+		public About()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AboutID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int AboutID
+		{
+			get
+			{
+				return this._AboutID;
+			}
+			set
+			{
+				if ((this._AboutID != value))
+				{
+					this.OnAboutIDChanging(value);
+					this.SendPropertyChanging();
+					this._AboutID = value;
+					this.SendPropertyChanged("AboutID");
+					this.OnAboutIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AboutPhoneNumber", DbType="NVarChar(64)")]
+		public string AboutPhoneNumber
+		{
+			get
+			{
+				return this._AboutPhoneNumber;
+			}
+			set
+			{
+				if ((this._AboutPhoneNumber != value))
+				{
+					this.OnAboutPhoneNumberChanging(value);
+					this.SendPropertyChanging();
+					this._AboutPhoneNumber = value;
+					this.SendPropertyChanged("AboutPhoneNumber");
+					this.OnAboutPhoneNumberChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AboutFacebook", DbType="NVarChar(64)")]
+		public string AboutFacebook
+		{
+			get
+			{
+				return this._AboutFacebook;
+			}
+			set
+			{
+				if ((this._AboutFacebook != value))
+				{
+					this.OnAboutFacebookChanging(value);
+					this.SendPropertyChanging();
+					this._AboutFacebook = value;
+					this.SendPropertyChanged("AboutFacebook");
+					this.OnAboutFacebookChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AboutInstagram", DbType="NVarChar(64)")]
+		public string AboutInstagram
+		{
+			get
+			{
+				return this._AboutInstagram;
+			}
+			set
+			{
+				if ((this._AboutInstagram != value))
+				{
+					this.OnAboutInstagramChanging(value);
+					this.SendPropertyChanging();
+					this._AboutInstagram = value;
+					this.SendPropertyChanged("AboutInstagram");
+					this.OnAboutInstagramChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AboutWhatsapp", DbType="NVarChar(64)")]
+		public string AboutWhatsapp
+		{
+			get
+			{
+				return this._AboutWhatsapp;
+			}
+			set
+			{
+				if ((this._AboutWhatsapp != value))
+				{
+					this.OnAboutWhatsappChanging(value);
+					this.SendPropertyChanging();
+					this._AboutWhatsapp = value;
+					this.SendPropertyChanged("AboutWhatsapp");
+					this.OnAboutWhatsappChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AboutEmail", DbType="NVarChar(64)")]
+		public string AboutEmail
+		{
+			get
+			{
+				return this._AboutEmail;
+			}
+			set
+			{
+				if ((this._AboutEmail != value))
+				{
+					this.OnAboutEmailChanging(value);
+					this.SendPropertyChanging();
+					this._AboutEmail = value;
+					this.SendPropertyChanged("AboutEmail");
+					this.OnAboutEmailChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AboutInfo", DbType="NVarChar(MAX)")]
+		public string AboutInfo
+		{
+			get
+			{
+				return this._AboutInfo;
+			}
+			set
+			{
+				if ((this._AboutInfo != value))
+				{
+					this.OnAboutInfoChanging(value);
+					this.SendPropertyChanging();
+					this._AboutInfo = value;
+					this.SendPropertyChanged("AboutInfo");
+					this.OnAboutInfoChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
 		}
 	}

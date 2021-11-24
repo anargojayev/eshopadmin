@@ -77,5 +77,37 @@ namespace eshopadmin.Controllers
             DataBase.SubmitChanges();
             return RedirectToAction("Product");
         }
+        public ActionResult About()
+        {
+            List<About> melumat = new List<About>();
+            melumat = DataBase.Abouts.ToList();
+            return View(melumat);
+        }
+        [HttpPost]
+        public ActionResult About(About melumat)
+        {
+            if (melumat.AboutID == 0)
+            {
+                DataBase.Abouts.InsertOnSubmit(melumat);
+            }
+            else
+            {
+                About selectedInfo = DataBase.Abouts.SingleOrDefault(x => x.AboutID == melumat.AboutID);
+                selectedInfo.AboutPhoneNumber = melumat.AboutPhoneNumber;
+                selectedInfo.AboutEmail = melumat.AboutEmail;
+                selectedInfo.AboutFacebook = melumat.AboutFacebook;
+                selectedInfo.AboutInstagram = melumat.AboutInstagram;
+                selectedInfo.AboutWhatsapp = melumat.AboutWhatsapp;
+                selectedInfo.AboutInfo = melumat.AboutInfo;
+            }
+            DataBase.SubmitChanges();
+            return RedirectToAction("About");
+        }
+        public ActionResult DeleteAboutRow(int id)
+        {
+            DataBase.Abouts.DeleteOnSubmit(DataBase.Abouts.SingleOrDefault(x => x.AboutID == id));
+            DataBase.SubmitChanges();
+            return RedirectToAction("About");
+        }
     }
 }

@@ -1,0 +1,95 @@
+﻿
+@{
+    ViewBag.Title = "About";
+    Layout = "~/Views/Shared/AdminMaster.cshtml";
+}
+@using eshopadmin.Models
+@model List<About>
+<button type="button" id="AddAbout" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal" style="margin-bottom: 20px">
+    Əlavə et
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="myModalLabel">Məlumat Formu</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            @* content *@
+            <div class="modal-body" style="padding: 20px; background: #ae6af5">
+
+                <form action="~/Admin/About" method="post" enctype="multipart/form-data">
+                    <input type="hidden" name="AboutID" id="aboutid" />
+                    @*<div class="custom-file">
+            <input type="file" class="custom-file-input" id="customFile" name="ProductImage" required multiple>
+            <label class="custom-file-label" for="customFile">Məhsulun şəkli</label>
+        </div>*@
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="aboutphonenumber" placeholder="Əlaqə Nömrəsi" name="AboutPhoneNumber" />
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="aboutemail" placeholder="Elektron Poçt" name="AboutEmail" />
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="aboutfacebook" placeholder="Facebook Ünvanı" name="AboutFacebook" />
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="aboutinstagram" placeholder="Instagram Ünvanı" name="AboutInstagram" />
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="aboutwhatsapp" placeholder="Whatsapp Nömrəsi" name="AboutWhatsapp" />
+                    </div>
+                    <div>
+                        <textarea class="form-control" id="aboutinfo" placeholder="Haqqında bölməsi" name="AboutInfo" rows="3"></textarea>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Bağla</button>
+                        <button type="submit" class="btn btn-primary">Yadda Saxla</button>
+                    </div>
+                </form>
+
+            </div>
+            @* content *@
+
+
+        </div>
+    </div>
+</div>
+<table class="table" style="background: white;" id="table">
+    <thead style="font-weight: bold;">
+        <tr>
+            <th forinput="AboutID" style="text-align: center; display: none" scope="col"></th>
+            <th forinput="AboutPhoneNumber" style="text-align: center;" scope="col">Əlaqə nömrəsi</th>
+            <th forinput="AboutEmail" style="text-align: center;" scope="col">Elektron poçt</th>
+            <th forinput="AboutFacebook" style="text-align: center;" scope="col">Facebook Ünvanı</th>
+            <th forinput="AboutInstagram" style="text-align: center;" scope="col">Instagram ünvanı</th>
+            <th forinput="AboytWhatsapp" style="text-align: center;" scope="col">Whatsapp Nömrəsi</th>
+            <th forinput="AboutInfo" style="text-align: center;" scope="col">Haqqımızda</th>
+            <th style="text-align: center;" scope="col">Düzəlt / Sil</th>
+            @*<th style="text-align: center;" scope="col">Məhsulun şəkli</th>*@
+        </tr>
+    </thead>
+    <tbody style="text-align: center;">
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td style="display: none">@item.AboutID</td>
+                <td>@item.AboutPhoneNumber</td>
+                <td>@item.AboutEmail</td>
+                <td>@item.AboutFacebook</td>
+                <td>@item.AboutInstagram</td>
+                <td>@item.AboutWhatsapp</td>
+                <td>@item.AboutInfo</td>
+                <td>
+                    <div style="display: flex; justify-content: space-around;">
+                        <div data-bs-toggle="modal" data-bs-target="#myModal" style="cursor: pointer; color: rebeccapurple"><i class="fas fa-edit"></i></div>
+                        <a href="~/Admin/DeleteAboutRow/@item.AboutID"> <div><i class="fas fa-trash"></i></div></a>
+                    </div>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
